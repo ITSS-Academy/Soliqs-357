@@ -21,7 +21,6 @@ import * as GroupActions from 'src/app/ngrx/actions/group.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { group } from '@angular/animations';
 
-
 @Component({
   selector: 'app-internal',
   templateUrl: './internal.component.html',
@@ -43,10 +42,8 @@ export class InternalComponent implements OnInit, OnDestroy {
   groupJoined$: Observable<Group[]> = this.store.select('group', 'groupJoined');
   isGetJoinedSuccess$ = this.store.select('group', 'isGetJoinedSuccess');
 
-
-
   user$ = this.store.select('user', 'user');
-
+  maxImagesToShow = 5;
   profile: Profile = <Profile>{};
   profile$ = this.store.select('profile', 'profile');
 
@@ -66,7 +63,6 @@ export class InternalComponent implements OnInit, OnDestroy {
   groupId!: string | null;
   // member: Profile[] = [];
   join: boolean = false;
-  
 
   userFirebase: any = null;
   constructor(
@@ -76,31 +72,23 @@ export class InternalComponent implements OnInit, OnDestroy {
       user: UserState;
       auth: AuthState;
       profile: ProfileState;
-    
-
     }>,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router
-
-
-  ) { }
+  ) {}
   ngOnInit(): void {
     this.subscriptions.push(
       combineLatest([this.idToken$, this.profile$]).subscribe(
         ([idToken, profile]) => {
           this.idToken = idToken;
           this.profile = profile;
-          
         }
-        
-        
       ),
       this.groups$.subscribe((groups) => {
-        if(groups._id) {
+        if (groups._id) {
           this.groups = groups;
-          
-        } 
+        }
       }),
       this.profile$.subscribe((profile) => {
         if (profile._id) {
@@ -108,50 +96,33 @@ export class InternalComponent implements OnInit, OnDestroy {
         }
       }),
 
-      
-        
       this.route.queryParamMap.subscribe((params) => {
         this.groupId = params.get('id');
         if (this.groupId) {
           this.store.dispatch(
             GroupActions.getOne({ id: this.groupId, idToken: this.idToken })
           );
-        } 
-        if(this.groupId === this.groups._id) {
+        }
+        if (this.groupId === this.groups._id) {
           this.groups.members.forEach((member) => {
             if (member._id === this.profile._id) {
               this.join = true;
-              console.log("tham gia rồi");
+              console.log('tham gia rồi');
               // console.log(this.groups._id);
-              
-              
             } else {
               this.join = false;
-              console.log("chưa tham gia");
+              console.log('chưa tham gia');
               // console.log(this.groups._id);
-  
             }
-          }
-          )
+          });
         }
-        
-      }),
+      })
     );
-    
-
-   
-    
   }
-  
-  
-
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
-
- 
-
 
   showImageInput = false;
   @ViewChild('appDialog2', { static: true })
@@ -167,8 +138,6 @@ export class InternalComponent implements OnInit, OnDestroy {
     this.showImageInput = false;
   }
 
-  
-
   openCommentDialog() {
     this.dialog2.nativeElement.showModal();
     this.cdr2.detectChanges();
@@ -179,7 +148,6 @@ export class InternalComponent implements OnInit, OnDestroy {
   }
   back() {
     this.router.navigate(['/group/suggest']);
-
   }
 
   openSnackBar(message: any) {
@@ -189,5 +157,10 @@ export class InternalComponent implements OnInit, OnDestroy {
       duration: 2000,
       panelClass: ['snackbar'],
     });
+  }
+  getZIndex(index: number) {
+    // Tính giá trị z-index dựa trên số lượng phần tử
+    // Ví dụ: Tăng giá trị z-index theo số thứ tự ngược lại
+    return this.groups.members.length - index + 1;
   }
 }
