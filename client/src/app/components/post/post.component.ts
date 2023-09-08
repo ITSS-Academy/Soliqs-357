@@ -36,7 +36,7 @@ export class PostComponent {
   authorId: string = '';
 
   isCommentSuccess$ = this.store.select('comment', 'isCreateSuccess');
-  commentsPost: Array<Comment> = [];
+  // commentsPost: Array<Comment> = [];
   comments$ = this.store.select('comment', 'comments');
 
   subscriptions: Subscription[] = [];
@@ -57,12 +57,23 @@ export class PostComponent {
         }
       )
     );
-    this.comments$.subscribe((comments) => {
-      console.log('comments', comments);
-      if (comments.length) {
-        this.commentsPost = comments;
+    this.isCommentSuccess$.subscribe((isCommentSuccess)=>{
+      if(isCommentSuccess){
+        this.closeCommentDialog();
+        this.commentForm.reset();
+        this.commentData = {
+          authorId: '',
+          content: this.commentForm.value.content || '',
+          postId: '',
+        };
       }
-    });
+    })
+    // this.comments$.subscribe((comments) => {
+    //   console.log('comments', comments);
+    //   if (comments.length) {
+    //     this.commentsPost = comments;
+    //   }
+    // });
   }
   commentForm = new FormGroup({
     content: new FormControl('', Validators.required),
@@ -146,16 +157,8 @@ export class PostComponent {
   openCommentDialog(item: any) {
     this.selectedPost = item;
     this.authorId = item.authorId._id;
-    // this.store.dispatch(
-    //   CommentActions.get({
-    //     idToken: this.idToken,
-    //     postId: item._id,
-    //   })
-    // );
     this.postCommented = item;
-    console.log('_id', item._id);
-    console.log('authorId', this.authorId);
-    console.log('baipostne', item);
+
 
     this.dialog2.nativeElement.showModal();
     this.cdr2.detectChanges();

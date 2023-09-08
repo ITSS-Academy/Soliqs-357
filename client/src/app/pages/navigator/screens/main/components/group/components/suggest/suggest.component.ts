@@ -56,7 +56,7 @@ export class SuggestComponent implements OnDestroy, OnInit {
   idToken$ = this.store.select('auth', 'idToken');
 
   userFirebase$ = this.store.select('auth', 'firebaseUser');
-
+  maxImagesToShow = 3;
   avatarUrl: string = '';
   uid: string = '';
   subscriptions: Subscription[] = [];
@@ -182,8 +182,6 @@ export class SuggestComponent implements OnDestroy, OnInit {
         }
       })
     );
-    
-    
   }
 
   getAllGroup(): void {
@@ -216,8 +214,6 @@ export class SuggestComponent implements OnDestroy, OnInit {
     );
   }
 
-  
-
   @Input() group!: [] | any;
   groupSelected: any;
   SelectGroup(group: any) {
@@ -229,7 +225,6 @@ export class SuggestComponent implements OnDestroy, OnInit {
       },
       queryParamsHandling: 'merge',
     });
-    
   }
 
   back() {

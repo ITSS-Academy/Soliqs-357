@@ -106,44 +106,69 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 0 15px 10px 15px;
+ .allmember{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .imgmember {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+    align-items: center;
 
-      .imgmember {
-        display: flex;
-        flex-direction: row;
+    .allimgmember{
+      width: 36px;
+        height: 36px;
+       
+        border-radius: 50%;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
         position: relative;
-        justify-content: center;
-        align-items: center;
-
-        .numofmember {
-          margin-left: 15px;
-          font-weight: 500;
-        }
-        .textmember {
-          margin-left: 5px;
-        }
-        img {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
-        img:nth-child(1) {
-          left: 0;
-          z-index: 1;
-        }
-        img:nth-child(2) {
-          left: 20px;
-          z-index: 2;
-        }
-        img:nth-child(3) {
-          left: 40px;
-          z-index: 3;
-        }
-
-        img:nth-child(n + 2) {
-          margin-left: -10px;
-        }
       }
+     
+    }
+    
+    
+    .allimgmember:nth-child(-n + 100) {
+      margin-left: -10px;
+      .allimgmember img:nth-child(1) {
+        left: 0;
+        z-index: 1;
+      }
+      
+      .allimgmember img:nth-child(2) {
+        left: 50px;
+        z-index: 2;
+      }
+      
+      .allimgmember img:nth-child(3) {
+        left: 40px;
+        z-index: 3;
+      }
+      
+    }
+    
+  }
+
+  .textnumofmember{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .numofmember {
+      margin-left: 15px;
+      font-weight: 500;
+    }
+    .textmember {
+      margin-left: 5px;
+    }
+  }
+ }
+      
 
       .btn {
         display: flex;

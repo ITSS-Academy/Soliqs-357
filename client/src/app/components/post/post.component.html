@@ -28,7 +28,7 @@
         <img *ngFor="let imageUrl of item?.media" [src]="imageUrl" alt="" />
       </div>
       <div class="reaction">
-        <div class="item-reaction">
+        <div class="item-reaction" (click)="openCommentDialog(item)">
           <mat-icon>sms</mat-icon>
           <div class="count">{{ item?.commentCount }}</div>
         </div>
@@ -68,7 +68,7 @@
   <div class="btnClose" (click)="closeCommentDialog()">
     <img src="https://cdn-icons-png.flaticon.com/512/2976/2976286.png" alt="" />
   </div>
-  <div class="top-dialog" *ngFor="let comment of commentsPost">
+  <!-- <div class="top-dialog" *ngFor="let comment of commentsPost">
     <div class="avatar-top-dialog">
       <img [src]="comment.authorId.avatar" alt="" />
     </div>
@@ -78,20 +78,18 @@
           {{ comment.authorId.displayName }}
         </div>
         <div class="tagname-top-dialog">@{{ comment.authorId.userName }}</div>
-        <!-- <div class="time-top-dialog">{{ comment.createdAt }}</div> -->
       </div>
       <div class="content-user-top-dialog">
         {{ comment.content }}
       </div>
     </div>
-  </div>
+  </div> -->
   <form class="formcomment" [formGroup]="commentForm">
     <div class="input-comment">
       <input
         type="text"
         placeholder="Post your comment!"
         formControlName="content"
-        #fileInput
       />
     </div>
 

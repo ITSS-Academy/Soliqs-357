@@ -19,13 +19,17 @@
           <img src="../../../../../../../../../assets/soliqs-logo.png" alt="" />
         </div>
         <div class="name">
-          
-            <span class="textname">{{ groups.name }}</span>
-            <span class="textmember">{{ groups.members.length }} members</span>
-          
-          <div class="imguser" >
-            <div *ngFor="let member of groups.members">
-              <img [src]="member.avatar" />
+          <span class="textname">{{ groups.name }}</span>
+          <span class="textmember">{{ groups.members.length }} members</span>
+
+          <div class="imguser">
+            <div class="allmember">
+              <div
+                class="imgofallmember"
+                *ngFor="let member of groups.members.slice(0, maxImagesToShow)"
+              >
+                <img [src]="member.avatar" />
+              </div>
             </div>
           </div>
         </div>
@@ -46,20 +50,26 @@
         </div>
 
         <div class="name">
-            <span class="textname">{{ groups.name }}</span>
-            <span class="textmember">{{ groups.members.length }} members</span>
-            <div class="imguser" >
-              <div *ngFor="let member of groups.members, let i=index">
-                <div >
-                  <img  [src]="member.avatar" />
-                </div>
+          <span class="textname">{{ groups.name }}</span>
+          <span class="textmember">{{ groups.members.length }} members</span>
+          <div class="imguser">
+            <div class="allmember">
+              <div
+                class="imgofallmember"
+                *ngFor="let member of groups.members.slice(0, maxImagesToShow)"
+              >
+                <img [src]="member.avatar" />
               </div>
             </div>
+          </div>
         </div>
-
       </div>
       <div class="rightsuggest">
-        <button mat-raised-button color="primary" (click)="joinGroup(this.groups._id, idToken)">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="joinGroup(this.groups._id, idToken)"
+        >
           Join
         </button>
       </div>
