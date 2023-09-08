@@ -103,12 +103,45 @@
           .imguser { 
             display: flex;
             flex-direction: row;
-            img {
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
-              object-fit: cover;
+            .allmember{
+              display: flex;
+              flex-direction: row;
+
+              .imgofallmember{
+                display: flex;
+                flex-direction: row;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    position: relative;
+                }
+               
+              }
+              // .imgofallmember:nth-child(-n + 100) {
+              //   margin-left: -10px;
+              //   .imgofallmember img:nth-child(1) {
+              //     left: 0;
+              //     z-index: 1;
+              //   }
+                
+              //   .imgofallmember img:nth-child(2) {
+              //     left: 50px;
+              //     z-index: 2;
+              //   }
+                
+              //   .imgofallmember img:nth-child(3) {
+              //     left: 40px;
+              //     z-index: 3;
+              //   }
+                
+              // }
             }
+           
           }
           .textname {
             font-weight: 500;
