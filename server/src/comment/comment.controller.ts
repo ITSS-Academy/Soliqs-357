@@ -35,6 +35,7 @@ export class CommentController {
 
       return newComment;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
