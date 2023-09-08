@@ -16,3 +16,17 @@
   width: 100%;
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .right {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .cover {
+    padding: 0;
+  }
+}

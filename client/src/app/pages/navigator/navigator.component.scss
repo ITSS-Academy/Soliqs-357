@@ -18,3 +18,17 @@
 .cover {
   padding: 0 150px;
 }
+
+@media (max-width: 768px) {
+  .left {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .cover {
+    padding: 0;
+  }
+}

@@ -68,12 +68,12 @@
             </div>
             <div class="user-detail-name">
               <div class="username-detail-post">
-                <span class="userName">{{ post.authorId.userName }}</span>
-                <span class="tagUsername">{{ post.authorId.displayName }}</span>
+                <span class="userName">{{ post.authorId.displayName }}</span>
+                <span class="tagUsername">@{{ post.authorId.userName }}</span>
               </div>
 
               <div class="time-detail-post">
-                <span>{{ post.createdAt }} </span>
+                <span>{{ post.createdAt | date : "medium" }} </span>
                 <span> </span>
                 <span>View</span>
               </div>
