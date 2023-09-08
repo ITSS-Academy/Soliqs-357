@@ -11,12 +11,11 @@ export const initualState: UserState = {
   isGetLoading: false,
   isGetSuccess: false,
   isGetFailure: false,
-
 };
 export const userReducer = createReducer(
   initualState,
   on(UserAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -25,7 +24,7 @@ export const userReducer = createReducer(
     };
   }),
   on(UserAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -34,7 +33,7 @@ export const userReducer = createReducer(
     };
   }),
   on(UserAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -43,7 +42,7 @@ export const userReducer = createReducer(
     };
   }),
   on(UserAction.get, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: true,
@@ -54,7 +53,7 @@ export const userReducer = createReducer(
     };
   }),
   on(UserAction.getSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: false,
@@ -65,7 +64,7 @@ export const userReducer = createReducer(
     };
   }),
   on(UserAction.getFailure, (state, { type, errorGetMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isGetLoading: false,

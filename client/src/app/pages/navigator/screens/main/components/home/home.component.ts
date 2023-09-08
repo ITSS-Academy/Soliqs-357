@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   scrollUpDistance = 1.5;
 
   onScrollDown(ev: any) {
-    console.log('scrolled down!!', ev);
+    //console.log('scrolled down!!', ev);
     this.page += 1;
     this.store.dispatch(PostActions.get({ page: this.page, pageSize: 5 }));
   }
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           })
         )
         .subscribe((posts) => {
-          console.log(posts);
+          //console.log(posts);
 
           this.posts = posts;
         })

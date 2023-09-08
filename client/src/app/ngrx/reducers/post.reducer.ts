@@ -19,7 +19,7 @@ export const initualState: PostState = {
 export const postReducer = createReducer(
   initualState,
   on(PostAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -28,7 +28,7 @@ export const postReducer = createReducer(
     };
   }),
   on(PostAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -37,7 +37,7 @@ export const postReducer = createReducer(
     };
   }),
   on(PostAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type, errorMessage);
+    //console.log(type, errorMessage);
     return {
       ...state,
       isLoading: false,
@@ -47,7 +47,7 @@ export const postReducer = createReducer(
   }),
 
   on(PostAction.get, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: true,
@@ -57,7 +57,7 @@ export const postReducer = createReducer(
   }),
 
   on(PostAction.getSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: false,
@@ -67,7 +67,7 @@ export const postReducer = createReducer(
     };
   }),
   on(PostAction.getFailure, (state, { type, errorMessage }) => {
-    console.log(type, errorMessage);
+    //console.log(type, errorMessage);
     return {
       ...state,
       isGetLoading: false,
@@ -78,7 +78,7 @@ export const postReducer = createReducer(
   }),
 
   on(PostAction.getById, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetByIdLoading: true,
@@ -90,7 +90,7 @@ export const postReducer = createReducer(
   }),
 
   on(PostAction.getByIdSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetByIdLoading: false,
@@ -101,7 +101,7 @@ export const postReducer = createReducer(
   }),
 
   on(PostAction.getByIdFailure, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetByIdLoading: false,

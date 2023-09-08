@@ -19,6 +19,24 @@
   padding: 0 150px;
 }
 
+@media (max-width: 1480px) {
+  .cover {
+    padding: 0 100px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .cover {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cover {
+    padding: 0 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .left {
     display: none;

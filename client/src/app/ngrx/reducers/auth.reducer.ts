@@ -15,7 +15,7 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(
   initialState,
   on(AuthActions.login, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -25,7 +25,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.loginSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -35,7 +35,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.loginFailure, (state, { errorMessage, type }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -45,7 +45,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.logout, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       islogoutLoading: true,
@@ -55,7 +55,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.logoutSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       idToken: '',
@@ -67,7 +67,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.logoutFailure, (state, { errorMessage, type }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       islogoutLoading: false,
@@ -77,7 +77,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.storedIdToken, (state, { idToken, type }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       idToken,
@@ -85,7 +85,7 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.storedFirebaseUser, (state, { firebaseUser, type }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       firebaseUser,

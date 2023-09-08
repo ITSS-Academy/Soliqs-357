@@ -19,7 +19,7 @@ export class AuthService {
             new GoogleAuthProvider()
           );
           let idToken = await creadential.user.getIdToken();
-          // console.log(idToken);
+          // //console.log(idToken);
           resolve(idToken);
         } catch {
           reject('Cannot login with Google');

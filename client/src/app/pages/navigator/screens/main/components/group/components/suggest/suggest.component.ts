@@ -115,7 +115,7 @@ export class SuggestComponent implements OnDestroy, OnInit {
         .subscribe((data) => {
           if (data) {
             this.groupsList = data;
-            console.log(data);
+            //console.log(data);
           }
         }),
       this.isGetJoinedSuccess$
@@ -131,7 +131,7 @@ export class SuggestComponent implements OnDestroy, OnInit {
         .subscribe((data) => {
           if (data) {
             this.groupJoined = data;
-            console.log(this.groupJoined);
+            //console.log(this.groupJoined);
           }
         }),
       this.isJoinSuccess$
@@ -147,7 +147,7 @@ export class SuggestComponent implements OnDestroy, OnInit {
         .subscribe((data) => {
           if (data) {
             this.groups = data;
-            console.log(this.groups);
+            //console.log(this.groups);
           }
         }),
       this.isCreating$.subscribe((res) => {
@@ -218,7 +218,7 @@ export class SuggestComponent implements OnDestroy, OnInit {
   groupSelected: any;
   SelectGroup(group: any) {
     this.groupSelected = group;
-    console.log(this.groupSelected);
+    //console.log(this.groupSelected);
     this.router.navigate(['/group/detail'], {
       queryParams: {
         id: group._id,

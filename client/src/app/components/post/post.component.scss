@@ -5,6 +5,7 @@
   justify-content: flex-start;
   margin-bottom: 10px;
   flex-direction: column;
+  overflow: hidden;
 
   .item {
     width: calc(100% - 20px);

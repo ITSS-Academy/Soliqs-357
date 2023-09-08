@@ -19,7 +19,7 @@ export const initualState: GroupState = {
 export const groupReducer = createReducer(
   initualState,
   on(GroupAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -29,7 +29,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -39,7 +39,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -49,7 +49,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getAll, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: true,
@@ -60,7 +60,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getAllSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: false,
@@ -71,7 +71,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getAllFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isGetLoading: false,
@@ -82,7 +82,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.update, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -92,7 +92,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.updateSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -102,7 +102,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.updateFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -112,7 +112,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.join, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -122,7 +122,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.joinSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -132,7 +132,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.joinFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -142,7 +142,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getOne, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: true,
@@ -153,7 +153,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getOneSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: false,
@@ -164,7 +164,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getOneFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isGetLoading: false,
@@ -175,7 +175,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getJoined, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGettingJoined: true,
@@ -186,7 +186,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getJoinedSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGettingJoined: false,
@@ -197,7 +197,7 @@ export const groupReducer = createReducer(
   }),
 
   on(GroupAction.getJoinedFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isGettingJoined: false,

@@ -68,7 +68,7 @@ export class PostComponent {
         }
       })
       // this.comments$.subscribe((comments) => {
-      //   console.log('comments', comments);
+      //   //console.log('comments', comments);
       //   if (comments.length) {
       //     this.commentsPost = comments;
       //   }
@@ -92,7 +92,7 @@ export class PostComponent {
   itemSelected: any;
   Selectitem(item: any) {
     this.itemSelected = item;
-    console.log(this.itemSelected);
+    // //console.log(this.itemSelected);
     this.router.navigate(['/photo'], {
       queryParams: {
         id: item._id,

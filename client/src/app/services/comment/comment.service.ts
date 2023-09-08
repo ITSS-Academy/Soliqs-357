@@ -13,7 +13,7 @@ export class CommentService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${idToken}`,
     });
-    console.log('postIdservice', postId);
+    //console.log('postIdservice', postId);
 
     return this.httpClient.get<Comment[]>(
       environment.hostingURL + `/v1/comment?postId=${postId}`,

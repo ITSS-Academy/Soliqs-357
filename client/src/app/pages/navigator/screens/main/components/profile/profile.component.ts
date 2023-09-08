@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
       if (value) {
         this.profile = value;
 
-        console.log('profile', value);
+        //console.log('profile', value);
       }
     });
     this.post$.subscribe((value) => {
@@ -73,14 +73,14 @@ export class ProfileComponent implements OnInit {
         this.postProfile = value.filter(
           (post) => post.authorId._id === this.profile._id
         );
-        console.log('post', value);
+        //console.log('post', value);
       }
     });
 
     this.idToken$.subscribe((value) => {
       if (value) {
         this.isToken = value;
-        console.log('token', value);
+        //console.log('token', value);
       }
     });
   }
@@ -291,7 +291,7 @@ export class ProfileComponent implements OnInit {
 
   save(profile: Profile) {
     this.avatarUser = true;
-    console.log('valuene', this.myEditForm.value);
+    //console.log('valuene', this.myEditForm.value);
     if (!profile.displayName) {
       profile.displayName = this.profile.displayName;
     }

@@ -16,7 +16,7 @@ export const initualState: CommentState = {
 export const commentReducer = createReducer(
   initualState,
   on(CommentAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isCreateLoading: true,
@@ -26,7 +26,7 @@ export const commentReducer = createReducer(
   }),
 
   on(CommentAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isCreateLoading: false,
@@ -36,7 +36,7 @@ export const commentReducer = createReducer(
   }),
 
   on(CommentAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type, errorMessage);
+    //console.log(type, errorMessage);
     return {
       ...state,
       isCreateLoading: false,
@@ -46,7 +46,7 @@ export const commentReducer = createReducer(
   }),
 
   on(CommentAction.get, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetLoading: true,
@@ -56,8 +56,8 @@ export const commentReducer = createReducer(
     };
   }),
   on(CommentAction.getSuccess, (state, action) => {
-    console.log(action.type);
-    console.log(action.comments);
+    //console.log(action.type);
+    //console.log(action.comments);
     return {
       ...state,
       isGetLoading: false,
@@ -68,7 +68,7 @@ export const commentReducer = createReducer(
   }),
 
   on(CommentAction.getFailure, (state, { type, errorMessage }) => {
-    console.log(type, errorMessage);
+    //console.log(type, errorMessage);
     return {
       ...state,
       isGetLoading: false,

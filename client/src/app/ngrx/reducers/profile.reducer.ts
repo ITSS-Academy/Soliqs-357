@@ -16,7 +16,7 @@ export const initualState: ProfileState = {
 export const profileReducer = createReducer(
   initualState,
   on(ProfileAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -26,7 +26,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: false,
@@ -36,7 +36,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -46,7 +46,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.get, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isLoading: true,
@@ -56,7 +56,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.getSuccess, (state, { type, profile }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -67,7 +67,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.getFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       isLoading: false,
@@ -77,7 +77,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.update, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       updateIsLoading: true,
@@ -87,7 +87,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.updateSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       updateIsLoading: false,
@@ -97,7 +97,7 @@ export const profileReducer = createReducer(
   }),
 
   on(ProfileAction.updateFailure, (state, { type, errorMessage }) => {
-    console.log(type);
+    //console.log(type);
     return {
       ...state,
       updateIsLoading: false,

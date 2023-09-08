@@ -119,12 +119,12 @@ export class InternalComponent implements OnInit, OnDestroy {
           this.groups.members.forEach((member) => {
             if (member._id === this.profile._id) {
               this.join = true;
-              console.log('tham gia rồi');
-              // console.log(this.groups._id);
+              //console.log('tham gia rồi');
+              // //console.log(this.groups._id);
             } else {
               this.join = false;
-              console.log('chưa tham gia');
-              // console.log(this.groups._id);
+              //console.log('chưa tham gia');
+              // //console.log(this.groups._id);
             }
           });
         }

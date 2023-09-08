@@ -15,7 +15,7 @@ export const initualState: StorageState = {
 export const storageReducer = createReducer(
   initualState,
   on(StorageAction.create, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isCreating: true,
@@ -24,7 +24,7 @@ export const storageReducer = createReducer(
     };
   }),
   on(StorageAction.createSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isCreating: false,
@@ -33,8 +33,8 @@ export const storageReducer = createReducer(
     };
   }),
   on(StorageAction.createFailure, (state, { type, errorMessage }) => {
-    console.log(type);
-    console.log(errorMessage);
+    //console.log(type);
+    //console.log(errorMessage);
     return {
       ...state,
       isCreating: false,
@@ -43,7 +43,7 @@ export const storageReducer = createReducer(
     };
   }),
   on(StorageAction.get, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetting: true,
@@ -53,7 +53,7 @@ export const storageReducer = createReducer(
     };
   }),
   on(StorageAction.getSuccess, (state, action) => {
-    console.log(action.type);
+    //console.log(action.type);
     return {
       ...state,
       isGetting: false,
@@ -63,8 +63,8 @@ export const storageReducer = createReducer(
     };
   }),
   on(StorageAction.getFailure, (state, { type, errorMessage }) => {
-    console.log(type);
-    console.log(errorMessage);
+    //console.log(type);
+    //console.log(errorMessage);
     return {
       ...state,
       isGetting: false,
