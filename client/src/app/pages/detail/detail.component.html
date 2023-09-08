@@ -74,7 +74,7 @@
 
               <div class="time-detail-post">
                 <span>{{ post.createdAt }} </span>
-                <span>123 </span>
+                <span> </span>
                 <span>View</span>
               </div>
             </div>
@@ -86,15 +86,15 @@
       </div>
       <div class="reaction-detail-post">
         <div class="reaction">
-          <div class="item-reaction" (click)="openCommentDialog()">
+          <div class="item-reaction">
             <mat-icon>sms</mat-icon>
-            <span>123</span>
+            <span></span>
           </div>
           <div class="item-reaction" (click)="repost1()">
             <mat-icon [ngStyle]="{ color: item1.sync ? '#944170' : '#504349' }"
               >sync</mat-icon
             >
-            <span>123</span>
+            <span></span>
           </div>
           <div class="item-reaction" (click)="like1()">
             <mat-icon
@@ -103,7 +103,7 @@
               }"
               >favorite</mat-icon
             >
-            <span>123</span>
+            <span></span>
           </div>
           <div class="item-reaction" (click)="monitoring1()">
             <mat-icon
