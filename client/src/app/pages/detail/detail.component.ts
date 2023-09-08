@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 import { AuthState } from 'src/app/ngrx/states/auth.state';
 
 import { Store } from '@ngrx/store';
-import { Subscription, combineLatest } from 'rxjs';
+import { Subscription, combineLatest, mergeMap } from 'rxjs';
 
 import { Post } from 'src/app/models/post.model';
 import * as PostActions from '../../ngrx/actions/post.actions';
@@ -46,19 +46,9 @@ export class DetailComponent implements OnInit {
 
   comments: Array<Comment> = [];
   comments$ = this.store.select('comment', 'comments');
-  isCommentSuccess$ = this.store.select('comment', 'isCreateSuccess');
+  isGetCommentSuccess$ = this.store.select('comment', 'isGetSuccess')
 
-  commentForm = new FormGroup({
-    content: new FormControl('', Validators.required),
-    authorId: new FormControl(''),
-    postId: new FormControl(''),
-  });
 
-  commentData = {
-    authorId: '',
-    content: this.commentForm.value.content || '',
-    postId: '',
-  };
 
   constructor(
     private router: Router,
@@ -78,28 +68,9 @@ export class DetailComponent implements OnInit {
     }),
       this.comments$.subscribe((comments) => {
         if (comments.length) {
-          console.log(comments);
-
           this.comments = comments;
         }
       });
-    this.isCommentSuccess$.subscribe((isSuccess) => {
-      this.route.queryParamMap.subscribe((params) => {
-        this.postId = params.get('id');
-      });
-      if (isSuccess) {
-        this.commentForm.reset();
-        this.commentData = {
-          authorId: '',
-          content: this.commentForm.value.content || '',
-          postId: '',
-        };
-        this.comments = [];
-        this.store.dispatch(
-          CommentActions.get({ postId: this.postId!, idToken: this.idToken })
-        );
-      }
-    });
   }
   ngOnInit(): void {
     this.subscriptions.push(
@@ -107,9 +78,8 @@ export class DetailComponent implements OnInit {
         ([idToken, profile$]) => {
           this.profile = profile$;
           this.idToken = idToken;
-          console.log(idToken);
         }
-      )
+      ),
     );
     this.route.queryParamMap.subscribe((params) => {
       this.postId = params.get('id');
@@ -124,20 +94,7 @@ export class DetailComponent implements OnInit {
       }
     });
   }
-  postComment() {
-    this.commentData = {
-      authorId: this.profile._id,
-      content: this.commentForm.value.content || '',
-      postId: this.post._id,
-    };
-    this.store.dispatch(
-      CommentActions.create({
-        idToken: this.idToken,
-        postId: this.post._id,
-        comment: this.commentData,
-      })
-    );
-  }
+
 
   item1 = {
     sync: false,
@@ -269,7 +226,8 @@ export class DetailComponent implements OnInit {
     // Chuyển hướng đến trang home
     // this.location.back();
     this.store.dispatch(PostActions.clearAllState());
-    this.store.dispatch(CommentActions.clearAllState());
+    this.postId=''
+    // this.store.dispatch(CommentActions.clearAllState());
     this.router.navigate(['/home']);
     this.comments = [];
 
