@@ -61,7 +61,7 @@
   <div class="navigate">
     <mat-tab-group animationDuration="0ms">
       <mat-tab label="Home">
-        <app-post></app-post>
+        <app-post [post]="posts"></app-post>
       </mat-tab>
 
       <mat-tab label="About">
@@ -92,7 +92,7 @@
             </div>
             <div class="textaboutCalendar">
               <span>Created 16 tháng 12, 2021 by</span>
-              <span class="createBy"> @{{ groups.owner }}</span>
+              <!-- <span class="createBy"> @{{ groups.owner }}</span> -->
             </div>
           </div>
         </div>

@@ -20,7 +20,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import * as GroupActions from 'src/app/ngrx/actions/group.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { group } from '@angular/animations';
-
+import { PostState } from 'src/app/ngrx/states/post.state';
+import * as PostActions from 'src/app/ngrx/actions/post.actions';
+import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-internal',
   templateUrl: './internal.component.html',
@@ -52,14 +54,17 @@ export class InternalComponent implements OnInit, OnDestroy {
 
   userFirebase$ = this.store.select('auth', 'firebaseUser');
 
+  post$ = this.store.select('post', 'posts');
+  posts: Post[] = [];
   avatarUrl: string = '';
+
   uid: string = '';
   subscriptions: Subscription[] = [];
 
   name: string = '';
   owner: string = '';
   members: string[] = [];
-  posts: string[] = [];
+
   groupId!: string | null;
   // member: Profile[] = [];
   join: boolean = false;
@@ -72,6 +77,7 @@ export class InternalComponent implements OnInit, OnDestroy {
       user: UserState;
       auth: AuthState;
       profile: ProfileState;
+      post: PostState;
     }>,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
@@ -93,6 +99,12 @@ export class InternalComponent implements OnInit, OnDestroy {
       this.profile$.subscribe((profile) => {
         if (profile._id) {
           this.profile = profile;
+        }
+      }),
+
+      this.post$.subscribe((posts) => {
+        if (posts) {
+          this.posts = posts;
         }
       }),
 
