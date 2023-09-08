@@ -12,11 +12,7 @@ export class PostEffects {
     this.actions$.pipe(
       ofType(PostActions.get),
       switchMap((action) => {
-        return this.postService.getPosts(
-          action.idToken,
-          action.page,
-          action.pageSize
-        );
+        return this.postService.getPosts(action.page, action.pageSize);
       }),
       map((posts) => {
         return PostActions.getSuccess({ posts });
@@ -44,16 +40,18 @@ export class PostEffects {
   );
 
   getPostById$ = createEffect(() =>
-   this.actions$.pipe(
-    ofType(PostActions.getById),
-    exhaustMap((action) =>
-        this.postService.getPostById( action.idToken, action.id ).pipe(
-            map((post) => {
-                return PostActions.getByIdSuccess( {post: post})
-            }),
-            catchError((error) => of(PostActions.getByIdFailure({errorMessage: error})))
+    this.actions$.pipe(
+      ofType(PostActions.getById),
+      exhaustMap((action) =>
+        this.postService.getPostById(action.idToken, action.id).pipe(
+          map((post) => {
+            return PostActions.getByIdSuccess({ post: post });
+          }),
+          catchError((error) =>
+            of(PostActions.getByIdFailure({ errorMessage: error }))
+          )
         )
+      )
     )
-)
-);
+  );
 }

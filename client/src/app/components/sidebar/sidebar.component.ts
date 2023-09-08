@@ -26,6 +26,8 @@ import { StorageState } from 'src/app/ngrx/states/storage.state';
 import * as AuthActions from '../../ngrx/actions/auth.actions';
 import * as StorageActions from '../../ngrx/actions/storage.actions';
 import * as PostActions from '../../ngrx/actions/post.actions';
+import * as ProfileActions from '../../ngrx/actions/profile.actions';
+import { UserState } from 'src/app/ngrx/states/user.state';
 
 @Component({
   selector: 'app-sidebar',
@@ -39,6 +41,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  page: number = 0;
+
   idToken: string = '';
   idToken$ = this.store.select('auth', 'idToken');
 
@@ -46,14 +50,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   profile: Profile = <Profile>{};
   profile$ = this.store.select('profile', 'profile');
+  isGetProfileSuccess$ = this.store.select('profile', 'isSuccess');
 
-  isCreateSuccess$ = this.store.select('storage', 'isCreateSuccess');
-  isGetSuccess$ = this.store.select('storage', 'isGetSuccess');
   isCreatePostSuccess$ = this.store.select('post', 'isSuccess');
 
   storage$ = this.store.select('storage', 'storage');
+  isCreateSuccess$ = this.store.select('storage', 'isCreateSuccess');
+  isGetSuccess$ = this.store.select('storage', 'isGetSuccess');
 
-  userFirebase$ = this.store.select('auth', 'firebaseUser');
+  user$ = this.store.select('user', 'user');
 
   formData: FormData = new FormData();
   fileName: string = '';
@@ -105,13 +110,32 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(
-      combineLatest([this.idToken$, this.profile$]).subscribe(
-        ([idToken, profile]) => {
-          this.profile = profile;
-          this.idToken = idToken;
-          // console.log(idToken);
+      combineLatest([this.idToken$, this.user$]).subscribe(
+        ([idToken, user]) => {
+          if (idToken && user.uid) {
+            this.store.dispatch(
+              ProfileActions.get({ id: user.uid, idToken: idToken })
+            );
+            this.idToken = idToken;
+          }
         }
       ),
+
+      this.isGetProfileSuccess$
+        .pipe(
+          mergeMap((res) => {
+            if (res) {
+              return this.profile$;
+            } else {
+              return [];
+            }
+          })
+        )
+        .subscribe((profile) => {
+          if (profile) {
+            this.profile = profile;
+          }
+        }),
 
       this.isCreateSuccess$.subscribe((res) => {
         if (res) {
@@ -164,9 +188,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
           this.selectedImage = null;
           this.fileInput.nativeElement.value = '';
           this.closePostDialog();
-          this.store.dispatch(
-            PostActions.get({ idToken: this.idToken, page: 0, pageSize: 2 })
-          );
         }
       })
     );
@@ -214,6 +235,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       storage: StorageState;
       profile: ProfileState;
       post: PostState;
+      user: UserState;
     }>
   ) {}
 

@@ -55,6 +55,7 @@ export const postReducer = createReducer(
       getErrorMessage: '',
     };
   }),
+
   on(PostAction.getSuccess, (state, action) => {
     console.log(action.type);
     return {

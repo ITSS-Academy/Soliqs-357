@@ -46,9 +46,7 @@ export class DetailComponent implements OnInit {
 
   comments: Array<Comment> = [];
   comments$ = this.store.select('comment', 'comments');
-  isGetCommentSuccess$ = this.store.select('comment', 'isGetSuccess')
-
-
+  isGetCommentSuccess$ = this.store.select('comment', 'isGetSuccess');
 
   constructor(
     private router: Router,
@@ -79,7 +77,7 @@ export class DetailComponent implements OnInit {
           this.profile = profile$;
           this.idToken = idToken;
         }
-      ),
+      )
     );
     this.route.queryParamMap.subscribe((params) => {
       this.postId = params.get('id');
@@ -94,7 +92,6 @@ export class DetailComponent implements OnInit {
       }
     });
   }
-
 
   item1 = {
     sync: false,
@@ -225,11 +222,12 @@ export class DetailComponent implements OnInit {
   return() {
     // Chuyển hướng đến trang home
     // this.location.back();
-    this.store.dispatch(PostActions.clearAllState());
-    this.postId=''
+    // this.store.dispatch(PostActions.clearAllState());
+    this.postId = '';
     // this.store.dispatch(CommentActions.clearAllState());
     this.router.navigate(['/home']);
     this.comments = [];
+    this.store.dispatch(PostActions.get({ page: 0, pageSize: 5 }));
 
     // Đặt màu nền của biểu tượng tương ứng thành true và của các biểu tượng khác thành false
   }

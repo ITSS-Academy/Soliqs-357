@@ -6,10 +6,12 @@ import { AuthState } from './ngrx/states/auth.state';
 import * as AuthActions from './ngrx/actions/auth.actions';
 import * as UserActions from './ngrx/actions/user.actions';
 import * as ProfileAtions from './ngrx/actions/profile.actions';
+import * as PostActions from './ngrx/actions/post.actions';
 import { User } from './models/user.model';
 import { combineLatest } from 'rxjs';
 import { UserState } from './ngrx/states/user.state';
 import { Router } from '@angular/router';
+import { PostState } from './ngrx/states/post.state';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +25,7 @@ export class AppComponent {
   constructor(
     private auth: Auth,
     private router: Router,
-    private store: Store<{ auth: AuthState; user: UserState }>
+    private store: Store<{ auth: AuthState; user: UserState; post: PostState }>
   ) {
     onAuthStateChanged(this.auth, async (user) => {
       if (user) {
@@ -38,6 +40,8 @@ export class AppComponent {
 
         this.store.dispatch(AuthActions.storedIdToken(idToken));
         this.store.dispatch(AuthActions.storedFirebaseUser(newUser));
+        this.store.dispatch(PostActions.get({ page: 0, pageSize: 5 }));
+
         this.router.navigate(['/loading']);
       } else {
         this.router.navigate(['/login']);

@@ -9,15 +9,10 @@ import { environment } from 'src/environments/environment';
 export class PostService {
   constructor(private httpClient: HttpClient) {}
 
-  getPosts(idToken: string, page: number, pageSize: number) {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${idToken}`,
-    });
-
+  getPosts(page: number, pageSize: number) {
     return this.httpClient.get<Post[]>(
       environment.hostingURL +
-        `/v1/post/all?page=${page}&limit=${pageSize}&sortBy=createdAt&sortOrder=desc`,
-      { headers }
+        `/v1/post/all?page=${page}&limit=${pageSize}&sortBy=createdAt&sortOrder=desc`
     );
   }
   getPostById(idToken: string, id: string | null) {

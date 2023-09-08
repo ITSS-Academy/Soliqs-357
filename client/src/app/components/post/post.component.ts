@@ -55,25 +55,25 @@ export class PostComponent {
           this.idToken = idToken;
           this.profile = profile;
         }
-      )
+      ),
+      this.isCommentSuccess$.subscribe((isCommentSuccess) => {
+        if (isCommentSuccess) {
+          this.closeCommentDialog();
+          this.commentForm.reset();
+          this.commentData = {
+            authorId: '',
+            content: this.commentForm.value.content || '',
+            postId: '',
+          };
+        }
+      })
+      // this.comments$.subscribe((comments) => {
+      //   console.log('comments', comments);
+      //   if (comments.length) {
+      //     this.commentsPost = comments;
+      //   }
+      // });
     );
-    this.isCommentSuccess$.subscribe((isCommentSuccess)=>{
-      if(isCommentSuccess){
-        this.closeCommentDialog();
-        this.commentForm.reset();
-        this.commentData = {
-          authorId: '',
-          content: this.commentForm.value.content || '',
-          postId: '',
-        };
-      }
-    })
-    // this.comments$.subscribe((comments) => {
-    //   console.log('comments', comments);
-    //   if (comments.length) {
-    //     this.commentsPost = comments;
-    //   }
-    // });
   }
   commentForm = new FormGroup({
     content: new FormControl('', Validators.required),
@@ -158,7 +158,6 @@ export class PostComponent {
     this.selectedPost = item;
     this.authorId = item.authorId._id;
     this.postCommented = item;
-
 
     this.dialog2.nativeElement.showModal();
     this.cdr2.detectChanges();
