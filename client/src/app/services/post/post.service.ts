@@ -15,6 +15,7 @@ export class PostService {
         `/v1/post/all?page=${page}&limit=${pageSize}&sortBy=createdAt&sortOrder=desc`
     );
   }
+
   getPostById(idToken: string, id: string | null) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${idToken}`,
@@ -29,7 +30,6 @@ export class PostService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${idToken}`,
     });
-
     return this.httpClient.post<Post>(
       environment.hostingURL + `/v1/post`,
       post,

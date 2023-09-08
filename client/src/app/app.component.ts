@@ -40,9 +40,8 @@ export class AppComponent {
 
         this.store.dispatch(AuthActions.storedIdToken(idToken));
         this.store.dispatch(AuthActions.storedFirebaseUser(newUser));
-        this.store.dispatch(PostActions.get({ page: 0, pageSize: 5 }));
 
-        this.router.navigate(['/loading']);
+        // this.router.navigate(['/loading']);
       } else {
         this.router.navigate(['/login']);
       }
@@ -54,9 +53,10 @@ export class AppComponent {
           this.store.dispatch(
             UserActions.get({ uid: firebaseUser.uid, idToken })
           );
-          this.store.dispatch(
-            ProfileAtions.get({ id: firebaseUser.uid, idToken })
-          );
+          // this.store.dispatch(
+          //   ProfileAtions.get({ id: firebaseUser.uid, idToken })
+          // );
+          this.store.dispatch(PostActions.get({ page: 0, pageSize: 5 }));
         }
       }
     );

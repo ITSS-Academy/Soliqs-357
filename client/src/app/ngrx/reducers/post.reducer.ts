@@ -52,7 +52,7 @@ export const postReducer = createReducer(
       ...state,
       isGetLoading: true,
       isGetSuccess: false,
-      getErrorMessage: '',
+      errorMessage: '',
     };
   }),
 
@@ -62,7 +62,7 @@ export const postReducer = createReducer(
       ...state,
       isGetLoading: false,
       isGetSuccess: true,
-      getErrorMessage: '',
+      errorMessage: '',
       posts: [...state.posts, ...action.posts],
     };
   }),
@@ -72,7 +72,7 @@ export const postReducer = createReducer(
       ...state,
       isGetLoading: false,
       isGetSuccess: false,
-      getErrorMessage: errorMessage,
+      errorMessage: errorMessage,
       posts: [],
     };
   }),
@@ -83,7 +83,7 @@ export const postReducer = createReducer(
       ...state,
       isGetByIdLoading: true,
       isGetByIdSuccess: false,
-      getErrorMessage: '',
+      errorMessage: '',
       post: <Post>{},
       posts: [],
     };
@@ -95,7 +95,7 @@ export const postReducer = createReducer(
       ...state,
       isGetByIdLoading: false,
       isGetByIdSuccess: true,
-      getErrorMessage: '',
+      errorMessage: '',
       post: action.post,
     };
   }),
@@ -106,7 +106,7 @@ export const postReducer = createReducer(
       ...state,
       isGetByIdLoading: false,
       isGetByIdSuccess: false,
-      getErrorMessage: action.errorMessage,
+      errorMessage: action.errorMessage,
       post: <Post>{},
     };
   }),

@@ -28,6 +28,7 @@ import * as StorageActions from '../../ngrx/actions/storage.actions';
 import * as PostActions from '../../ngrx/actions/post.actions';
 import * as ProfileActions from '../../ngrx/actions/profile.actions';
 import { UserState } from 'src/app/ngrx/states/user.state';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sidebar',
@@ -52,7 +53,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   profile$ = this.store.select('profile', 'profile');
   isGetProfileSuccess$ = this.store.select('profile', 'isSuccess');
 
+  isCreatingPost$ = this.store.select('post', 'isLoading');
   isCreatePostSuccess$ = this.store.select('post', 'isSuccess');
+  errorMessage$ = this.store.select('post', 'errorMessage');
 
   storage$ = this.store.select('storage', 'storage');
   isCreateSuccess$ = this.store.select('storage', 'isCreateSuccess');
@@ -67,6 +70,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
   id: string = '';
 
   isHaveImage = true;
+
+  storageForm = new FormData();
+
+  constructor(
+    private overlayContainer: OverlayContainer,
+    private router: Router,
+    private store: Store<{
+      auth: AuthState;
+      storage: StorageState;
+      profile: ProfileState;
+      post: PostState;
+      user: UserState;
+    }>,
+    private _snackBar: MatSnackBar
+  ) {}
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   onFileSelected(event: any) {
@@ -176,6 +194,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
           }
         }),
 
+      this.isCreatingPost$.subscribe((res) => {
+        if (res) {
+          this.openSnackBar('Creating...');
+        }
+      }),
+
       this.isCreatePostSuccess$.subscribe((res) => {
         if (res) {
           this.postData = {
@@ -187,10 +211,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
           this.postForm.reset();
           this.selectedImage = null;
           this.fileInput.nativeElement.value = '';
+          // this.store.dispatch(
+          //   PostActions.get({ page: this.page, pageSize: 5 })
+          // );
+
           this.closePostDialog();
         }
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   uploadPost() {
@@ -225,23 +259,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-  storageForm = new FormData();
-
-  constructor(
-    private overlayContainer: OverlayContainer,
-    private router: Router,
-    private store: Store<{
-      auth: AuthState;
-      storage: StorageState;
-      profile: ProfileState;
-      post: PostState;
-      user: UserState;
-    }>
-  ) {}
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
+  openSnackBar(message: any) {
+    this._snackBar.open(message, '', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 1000,
+      panelClass: ['snackbar'],
     });
   }
 

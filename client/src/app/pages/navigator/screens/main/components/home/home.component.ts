@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   posts: Post[] = [];
   posts$ = this.store.select('post', 'posts');
+  isCreateSuccess$ = this.store.select('post', 'isSuccess');
   isGetSuccess$ = this.store.select('post', 'isGetSuccess');
 
   page: number = 0;
@@ -49,6 +50,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
+      this.isCreateSuccess$.subscribe((res) => {
+        if (res) {
+          this.store.dispatch(PostActions.clearAllState());
+          this.store.dispatch(
+            PostActions.get({ page: this.page, pageSize: 5 })
+          );
+        }
+      }),
       this.isGetSuccess$
         .pipe(
           mergeMap((isGetSuccess) => {
