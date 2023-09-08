@@ -24,40 +24,42 @@
           </div>
         </div>
       </div>
-      <div class="img-item" (click)="Selectitem(item)" *ngIf="item.media[0]">
-        <img *ngFor="let imageUrl of item?.media" [src]="imageUrl" alt="" />
-      </div>
-      <div class="reaction">
-        <div class="item-reaction" (click)="openCommentDialog(item)">
-          <mat-icon>sms</mat-icon>
-          <div class="count">{{ item?.commentCount }}</div>
+      <div class="allitemofpost">
+        <div class="img-item" (click)="Selectitem(item)" *ngIf="item.media[0]">
+          <img *ngFor="let imageUrl of item?.media" [src]="imageUrl" alt="" />
         </div>
-        <div class="item-reaction" (click)="repost1()">
-          <mat-icon [ngStyle]="{ color: item1.sync ? '#944170' : '#504349' }"
-            >sync</mat-icon
-          >
-          <div class="count">{{ item?.repostCount }}</div>
-        </div>
-        <div class="item-reaction" (click)="like1()">
-          <mat-icon
-            [ngStyle]="{
-              color: item1.favorite ? '#944170' : '#504349'
-            }"
-            >favorite</mat-icon
-          >
-          <div class="count">{{ item?.likeCount }}</div>
-        </div>
-        <div class="item-reaction" (click)="monitoring1()">
-          <mat-icon
-            [ngStyle]="{
-              color: item1.monitoring ? '#944170' : '#504349'
-            }"
-            >legend_toggle</mat-icon
-          >
-          <div class="count">{{ item?.monitoringCount }}</div>
-        </div>
-        <div class="item-reaction">
-          <mat-icon>file_upload</mat-icon>
+        <div class="reaction">
+          <div class="item-reaction" (click)="openCommentDialog(item)">
+            <mat-icon>sms</mat-icon>
+            <div class="count">{{ item?.commentCount }}</div>
+          </div>
+          <div class="item-reaction" (click)="repost1()">
+            <mat-icon [ngStyle]="{ color: item1.sync ? '#944170' : '#504349' }"
+              >sync</mat-icon
+            >
+            <div class="count">{{ item?.repostCount }}</div>
+          </div>
+          <div class="item-reaction" (click)="like1()">
+            <mat-icon
+              [ngStyle]="{
+                color: item1.favorite ? '#944170' : '#504349'
+              }"
+              >favorite</mat-icon
+            >
+            <div class="count">{{ item?.likeCount }}</div>
+          </div>
+          <div class="item-reaction" (click)="monitoring1()">
+            <mat-icon
+              [ngStyle]="{
+                color: item1.monitoring ? '#944170' : '#504349'
+              }"
+              >legend_toggle</mat-icon
+            >
+            <div class="count">{{ item?.monitoringCount }}</div>
+          </div>
+          <div class="item-reaction">
+            <mat-icon>file_upload</mat-icon>
+          </div>
         </div>
       </div>
     </div>
